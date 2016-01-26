@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--google plus sign in auth -->
+    <meta name="google-signin-client_id" content="174332891655-qes2qgpud10p3jg7dn2j0buekaj8qamo.apps.googleusercontent.com">
+
+    <title>Event Planner</title>
+
+    <!-- Bootstrap -->
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+
+      <!--Datepicker-->
+      
+  		
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/css/bootstrap-datepicker.min.css" />
+      
+
+      <!--local css file -->
+      <link rel="stylesheet" href="styles/main.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+  	<div class="container-fluid">
+		<div class="row">
+			<form class="">
+				<fieldset class="form-group form-inline">
+				<legend>Personal Information</legend>
+					<label for="coordinatorName" class="sr-only"> Enter your Full Name </label>
+						<input type="text" id="coordinatorName" class="form-control" autocomplete="on" placeholder="First and Last Name: ex: Jane Doe">
+					
+					<label for="coordinatorEmail" class="sr-only"> Enter your email </label>
+						<input type="text" id="coordinatorEmail" class="form-control" autocomplete="on" placeholder="Email: Jane.doe@janedoe.com">
+				</fieldset>
+				<fieldset class="form-group form-inline">	
+					<label for="coordinatorPassword" class="sr-only"> Enter a password </label>
+						<input type="password" id="coordinatorPassword" class="form-control" placeholder="Password">
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="optionalProfile">
+					<input type="checkbox" id="optionalProfile" value="">
+					 Check here if you would like to create a more detailed profile</label>
+				</fieldset>
+			</form>
+		</div><!--End of profile form-->
+		<div class="row">
+			<form class="">
+				<fieldset class="form-group">
+				<legend>Create your Event</legend>
+					<label for="eventName" class="sr-only"> Enter your Event Name </label>
+					<input type="text" id="eventName" class="form-control" autocomplete="on" placeholder="Johns Birthday Party">
+				</fieldset>
+				<fieldset class="form-group form-inline">
+				    <label for="eventTypeSelect">Select Event Type</label>
+				    <select multiple class="form-control" id="eventTypeSelect">
+				     	<option>Birthday Party</option>
+				     	<option>Wedding</option>
+				      	<option>Baby Shower</option>
+				      	<option>Conference</option>
+				      	<option>Dinner Party</option>
+				      	<option>Tournament</option>
+				      	<option>HangOut</option>
+				    </select>
+				</fieldset>
+				<fieldset class="form-group">
+				<label for="eventHost" class="sr-only"> Enter Host Name </label>
+					<input type="text" id="coordinatorEmail" class="form-control" autocomplete="on" placeholder="Host: Jane or Jane Doe Inc.">
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="eventLocation" class="sr-only"> Enter Location Name</label>
+					<input type="text" id="eventLocation" class="form-control" autocomplete="on" placeholder="Loctaion Name: Golf-n-Stuff">
+
+					<label for="eventLocationAddress" class="sr-only"> Enter Location Address</label>
+					<input type="text" id="eventLocationAddress" class="form-control" autocomplete="on" placeholder="123 E Awesome St., Tucson, Arizona">
+				</fieldset>
+				<fieldset class="form-group">
+				<div class="container">
+				    <div class='col-md-5'>
+				        <div class="form-group">
+				            <div class='input-group date' id='datetimepicker6'>
+				                <input type='text' class="form-control" />
+				                <span class="input-group-addon">
+				                    <span class="glyphicon glyphicon-calendar"></span>
+				                </span>
+				            </div>
+				        </div>
+				    </div>
+				    <div class='col-md-5'>
+				        <div class="form-group">
+				            <div class='input-group date' id='datetimepicker7'>
+				                <input type='text' class="form-control" />
+				                <span class="input-group-addon">
+				                    <span class="glyphicon glyphicon-calendar"></span>
+				                </span>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="guestList">
+					<input type="checkbox" id="guestList" value="">
+					 Check here if you would like to create a guest list</label>
+				</fieldset>
+				<fieldset class="form-group form-inline">
+					<label for="guestName" class="sr-only guestListForm"> Guest Name</label>
+					<input type="text" id="guestName" class="form-control guestListForm" autocomplete="on" placeholder="John Doe">
+				
+					<label for="guestEmail" class="sr-only guestListForm"> Guest Email</label>
+					<input type="text" id="guestEmail" class="form-control guestListForm" autocomplete="on" placeholder="Email: John.doe@Doe.com">
+					<button type="button" id="addGuest">Add Guest</button>
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="invitationMessage" class="sr-only"> Enter invitition Message </label>
+					<input type="text" id="invitationMessage" class="form-control" placeholder="Invitation Message: Come join us to celebrate Jane's Birthday">
+				</fieldset>
+				<fieldset class="form-group">
+					<input type="submit" value="Submit Event">
+				</fieldset>
+			</form>
+		</div><!--End of Event details form-->
+	</div><!--End of main container-->
+
+	<!--modal-->
+
+					<label for="coordinatorWorkPlace" class="sr-only optionalForm"> Who is your employer</label>
+						<input type="text" id="coordinatorWorkPlace" class="form-control optionalForm" placeholder="Place of Work: Jane Doe Inc.">
+					
+					<label for="coordinatorTitle" class="sr-only"> Enter your Job Title </label>
+						<input type="text" id="coordinatorTitle" class="form-control optionalForm" placeholder="Job Title: Senior Vice President (VP)">
+					
+					<label for="coordinatorJobBDay" class="sr-only"> Enter job start date </label>
+						<input type="date" id="coordinatorJobBDay" class="form-control optionalForm" placeholder="01/05/2005">
+
+					<label for="coordinatorBDay" class="sr-only"> Enter your Birthday </label>
+						<input type="date" id="coordinatorBDay" class="form-control optionalForm" placeholder="01/05/2000">
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <!-- Latest compiled and minified Bootstrap JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+      
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      
+      <script src="js/all.min.js"></script>
+      
+  </body>
+</html>

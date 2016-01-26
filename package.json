@@ -1,0 +1,36 @@
+{
+  "name": "meetup_event_planner",
+  "version": "1.0.0",
+  "description": "A web app that allows the user to register and create a new event with details concerning the location, time and other important event items. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mehkai/sw_meetUpEventPlanner.git"
+  },
+  "author": "Carl Vereen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mehkai/sw_meetUpEventPlanner/issues"
+  },
+  "homepage": "https://github.com/Mehkai/sw_meetUpEventPlanner",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "del": "^2.2.0",
+    "eslint": "^1.10.3",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-cache": "^0.4.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-jasmine-phantom": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.1",
+    "gulp-uglify": "^1.5.1",
+    "imagemin-pngquant": "^4.2.0"
+  }
+}
