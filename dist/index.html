@@ -22,6 +22,7 @@
       
   		
   		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.1/css/bootstrap-datepicker.min.css" />
+  		<link rel="stylesheet" type="text/css" href="styles/bootstrap-datepicker3.css">
       
 
       <!--local css file -->
@@ -33,120 +34,193 @@
     <![endif]-->
   </head>
   <body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Ivent</a>
+    </div>
 
-  	<div class="container-fluid">
+    <!-- Collect the nav links and other content for toggling -->
+    <div class="nav navbar-nav navbar-right" id="bs-example-navbar-collapse-1">
+
+	      	<div class="container-fluid">
+		      	<ul class="nav navbar-nav navbar-right">
+		       		<button type="button" class="btn btn-default">Save Draft</button>
+		        	<button type="button" class="btn btn-default">Continue</button>
+		    	</ul>
+	    	</div>
+      	     	
+    </div><!-- navbar-collapse end-->
+  </div><!-- navbar container-fluid end-->
+</nav><!-- navbar end-->
+
+  	<div class="container-fluid main">
+		
 		<div class="row">
-			<form class="">
-				<fieldset class="form-group form-inline">
-				<legend>Personal Information</legend>
-					<label for="coordinatorName" class="sr-only"> Enter your Full Name </label>
-						<input type="text" id="coordinatorName" class="form-control" autocomplete="on" placeholder="First and Last Name: ex: Jane Doe">
+			<div class="container-fluid">
+				<form class="" data-bind="visible: eventForm">
+					<fieldset class="form-group form-inline">
+					<legend>Create your Event</legend>
+						<div class="col-md-6">
+						    <label for="eventTypeSelect">Select Event Type</label>
+						    <select multiple class="form-control" id="eventTypeSelect" data-bind="textInput: eventType">
+						     	<option value="birthday">Birthday</option><option value="pool_party">Pool Party</option><option value="girls_night">Girls' Night</option><option value="fiesta">Fiesta</option><option value="new_years">New Year's Eve</option><option value="reunions">Reunions</option><option value="holiday_party">Holiday Party</option><option value="baby_shower">Baby Shower</option><option value="bridal_shower">Bridal Shower</option><option value="charity_fundraisers">Charity / Fundraisers</option><option value="housewarming">Housewarming</option><option value="gift_exchange">Gift Exchange</option><option value="brunch_lunch">Brunch / Lunch</option><option value="tailgating">Tailgating</option><option value="anniversary">Anniversary</option><option value="st_patricks_day">St. Patrick's Day</option><option value="christmas">Christmas</option><option value="bachelor">Bachelor Party</option><option value="trips_getaways">Trips and Getaways</option><option value="potluck">Potluck</option><option value="thanksgiving">Thanksgiving</option><option value="thebiggame">The Big Game</option><option value="bachelorette">Bachelorette Party</option><option value="graduation">Graduation</option><option value="mardi_gras">Mardi Gras</option><option value="retirement_farewell">Retirement / Farewell</option><option value="valentines_day">Valentine's Day</option><option value="game_night">Game Night</option><option value="engagement">Engagement Party</option><option value="watchthegame">Watch the Game</option><option value="bbq">BBQ</option><option value="family_gathering">Family Gathering</option><option value="hanukkah">Hanukkah</option><option value="save_the_date">Save the Date</option><option value="happy_hour">Happy Hour</option><option value="halloween">Halloween</option><option value="labor_day">Labor Day</option><option value="cocktail_party">Cocktail Party</option><option value="weddings">Weddings</option><option value="dinner_party">Dinner Party</option><option value="guys_night">Guys' Night</option><option value="religious">Religious</option><option value="outdoor_fun">Outdoor Fun</option><option value="clubs_groups">Clubs / Groups</option>
+						    </select>
+					    </div>
+					</fieldset>
+					<fieldset class="form-group">
+						<div class="col-md-6">
+							<label for="eventName" class="">Event Name </label>
+							<input type="text" id="eventName" class="form-control" autocomplete="on" placeholder="Enter your Event Name" data-bind="textInput: eventName">
+						</div>
+					</fieldset>
+					<fieldset class="form-group">
+						<div class="col-md-6">
+							<label for="eventHost" class="">Host Details </label>
+							<input type="text" id="coordinatorHostName" class="form-control" autocomplete="on" placeholder="Host: Jane or Jane Doe Inc." data-bind="textInput: hostName">
+							<input type="text" id="coordinatorPhone" class="form-control" autocomplete="on" placeholder="555-555-5555" data-bind="textInput: hostPTN">
+						</div>
+					</fieldset>
+					<fieldset class="form-group">
+						<div class="col-md-6" id="locationField">
+							<label for="eventLocation" class="">Event Location Details</label>
+							<input type="text" id="eventLocation" class="form-control" autocomplete="on" placeholder="Loctaion Name: Golf-n-Stuff" data-bind="textInput: eventLocationName">
+							
+							<label for="eventLocationAddress" class="sr-only"> Enter Location Address</label>
+							<input type="text" id="eventLocationAddress" class="form-control" placeholder="123 E Awesome St., Tucson, Arizona" onfocus="geolocate()" autocomplete="on" data-bind="textInput: eventLocationAddress">
+						</div>
+					</fieldset>
+					<fieldset class="form-group">
+						<div class="col-md-6">
+							<fieldset class="form-group">
+							<label>Event Dates and Times</label>
+							<div class="input-daterange input-group" id="datepickerDiv1" >
+                    			<span class="input-group-addon span-date">Start</span>
+                    			<input type="text" class="input-sm form-control datetimepickerDate" name="Start" id="datetimepicker1" data-bind="textInput: eventStartDate" placeholder="MM/DD/YYYY"/>
+                    			<span class="input-group-addon">at</span>
+                    			<div id="datetimepicker3" class="input-group">
+    							<input data-format="hh:mm" type="text" class="input-sm form-control tclock" data-bind="textInput: startTime" placeholder="hh:mm pm">
+    							</div>
+							</div>
+    						<div class="input-daterange input-group" id="datepickerDiv2" data-bind="visible: datevisible" >
+                    			<span class="input-group-addon span-date">End</span>
+                    			<input type="text" class="input-sm form-control datetimepickerDate" name="Start" id="datetimepicker2" data-bind="textInput: eventEndDate" placeholder="MM/DD/YYYY"/>
+                    			<span class="input-group-addon">at</span>
+                    			<div id="datetimepicker4" class="input-group">
+    							<input data-format="hh:mm" type="text" class="input-sm form-control tclock" data-bind="textInput: endTime" placeholder="hh:mm pm"></input>
+    							</div>
+						  	</div>
+						  	</fieldset>
+						  	<fieldset class="form-group">
+    						<button type="button" id="addDate" data-bind="event: {click: showEndDate}, text: addEndButton, attr: {class: dateButtonClass}"></button>
+    						</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="form-group">
+						<div class="col-md-6">
+							<label for="invitationMessage" class=""> Enter invitition Message </label>
+							<input type="text" id="invitationMessage" class="form-control" placeholder="Invitation Message: Come join us to celebrate Jane's Birthday" data-bind="textInput: eventMessage"/>
+						</div>
+					</fieldset>
+					<fieldset class="form-group">
+						<div class="col-xs-8 col-md-8 form-group">
+							<button type="button" class="btn btn-default" id="guestList" value="" data-bind="event: {click: showGuestList}, text: guestButton"></button>
+					 	</div>
+					</fieldset>
+					<div class="" data-bind="visible: guestList">
+					<fieldset class="form-group form-inline">
+						<div class="col-md-6">
+						<fieldset class="form-group">
+						<label for="guestName" class=" guestListForm"> Guest Name</label>
+						<input type="text" id="guestName" class="form-control guestListForm" autocomplete="on" placeholder="John Doe" data-bind="textInput: guestName">
 					
-					<label for="coordinatorEmail" class="sr-only"> Enter your email </label>
-						<input type="text" id="coordinatorEmail" class="form-control" autocomplete="on" placeholder="Email: Jane.doe@janedoe.com">
-				</fieldset>
-				<fieldset class="form-group form-inline">	
-					<label for="coordinatorPassword" class="sr-only"> Enter a password </label>
-						<input type="password" id="coordinatorPassword" class="form-control" placeholder="Password">
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="optionalProfile">
-					<input type="checkbox" id="optionalProfile" value="">
-					 Check here if you would like to create a more detailed profile</label>
-				</fieldset>
-			</form>
-		</div><!--End of profile form-->
-		<div class="row">
-			<form class="">
-				<fieldset class="form-group">
-				<legend>Create your Event</legend>
-					<label for="eventName" class="sr-only"> Enter your Event Name </label>
-					<input type="text" id="eventName" class="form-control" autocomplete="on" placeholder="Johns Birthday Party">
-				</fieldset>
-				<fieldset class="form-group form-inline">
-				    <label for="eventTypeSelect">Select Event Type</label>
-				    <select multiple class="form-control" id="eventTypeSelect">
-				     	<option>Birthday Party</option>
-				     	<option>Wedding</option>
-				      	<option>Baby Shower</option>
-				      	<option>Conference</option>
-				      	<option>Dinner Party</option>
-				      	<option>Tournament</option>
-				      	<option>HangOut</option>
-				    </select>
-				</fieldset>
-				<fieldset class="form-group">
-				<label for="eventHost" class="sr-only"> Enter Host Name </label>
-					<input type="text" id="coordinatorEmail" class="form-control" autocomplete="on" placeholder="Host: Jane or Jane Doe Inc.">
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="eventLocation" class="sr-only"> Enter Location Name</label>
-					<input type="text" id="eventLocation" class="form-control" autocomplete="on" placeholder="Loctaion Name: Golf-n-Stuff">
+						<label for="guestEmail" class="sr-only guestListForm"> Guest Email</label>
+						<input type="text" id="guestEmail" class="form-control guestListForm" autocomplete="on" placeholder="Email: John.doe@Doe.com" data-bind="textInput: guestEmail">
+						</fieldset>
+						<fieldset class="form-group">
+						<button type="button" class="btn btn-default" id="addGuest" data-bind="event: {click: addGuest}">Add Guest</button>
+						</fieldset>
+						<table class="table table-striped table-responsive">
+							<tr>
+								<th>Guest Name</th>
+								<th>Guest Email</th>
+							</tr>
+							<tr data-bind="foreach: guestListArray">
+								<td data-bind="text: guestName"></td>
+								<td data-bind="text: guestEmail"></td>
+							</tr>
+						</table>
+						</div>
+					</fieldset>
+					</div>
+					<div class="col-xs-6 col-md-8 form-group">
+							<button type="button" class="btn btn-default" data-bind="event: {click: showPersonal}">save form</button>
+						</div>
 
-					<label for="eventLocationAddress" class="sr-only"> Enter Location Address</label>
-					<input type="text" id="eventLocationAddress" class="form-control" autocomplete="on" placeholder="123 E Awesome St., Tucson, Arizona">
-				</fieldset>
-				<fieldset class="form-group">
-				<div class="container">
-				    <div class='col-md-5'>
-				        <div class="form-group">
-				            <div class='input-group date' id='datetimepicker6'>
-				                <input type='text' class="form-control" />
-				                <span class="input-group-addon">
-				                    <span class="glyphicon glyphicon-calendar"></span>
-				                </span>
-				            </div>
-				        </div>
-				    </div>
-				    <div class='col-md-5'>
-				        <div class="form-group">
-				            <div class='input-group date' id='datetimepicker7'>
-				                <input type='text' class="form-control" />
-				                <span class="input-group-addon">
-				                    <span class="glyphicon glyphicon-calendar"></span>
-				                </span>
-				            </div>
-				        </div>
-				    </div>
-				</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="guestList">
-					<input type="checkbox" id="guestList" value="">
-					 Check here if you would like to create a guest list</label>
-				</fieldset>
-				<fieldset class="form-group form-inline">
-					<label for="guestName" class="sr-only guestListForm"> Guest Name</label>
-					<input type="text" id="guestName" class="form-control guestListForm" autocomplete="on" placeholder="John Doe">
-				
-					<label for="guestEmail" class="sr-only guestListForm"> Guest Email</label>
-					<input type="text" id="guestEmail" class="form-control guestListForm" autocomplete="on" placeholder="Email: John.doe@Doe.com">
-					<button type="button" id="addGuest">Add Guest</button>
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="invitationMessage" class="sr-only"> Enter invitition Message </label>
-					<input type="text" id="invitationMessage" class="form-control" placeholder="Invitation Message: Come join us to celebrate Jane's Birthday">
-				</fieldset>
-				<fieldset class="form-group">
-					<input type="submit" value="Submit Event">
-				</fieldset>
-			</form>
+				</form>
+			</div>	
 		</div><!--End of Event details form-->
+<!-- 		Print Event Data to Screen #################################################### -->		
+		<div class="container-fluid" id="canvas">
+			<h2 data-bind="text: printEventName"></h2>
+			<p data-bind="text: printEventType"></p>
+			<p data-bind="text: printName"></p>
+			<p data-bind="text: printHostPTN"></p>
+			<h3 data-bind="text: printEventLocationName"></h3>
+			<p data-bind="text: printEventLocationAddress"></p>
+			<p data-bind="text: printEventDates"></p>
+			<p data-bind="text: printEventMessage"></p>
+		</div>
+		<div class="row">
+			<div class="container-fluid">
+				<form class="" data-bind="visible: personalForm">
+					<fieldset class="form-group form-inline">
+					<legend>Personal Information</legend>
+						<label for="coordinatorName" class="sr-only"> Enter your Full Name </label>
+							<input type="text" id="coordinatorName" class="form-control" autocomplete="on" placeholder="First and Last Name: ex: Jane Doe">
+						
+						<label for="coordinatorEmail" class="sr-only"> Enter your email </label>
+							<input type="text" id="coordinatorEmail" class="form-control" autocomplete="on" placeholder="Email: Jane.doe@janedoe.com">
+					</fieldset>
+					<fieldset class="form-group form-inline">	
+						<label for="coordinatorPassword" class="sr-only"> Enter a password </label>
+							<input type="password" id="coordinatorPassword" class="form-control" autocomplete="on" placeholder="Password">
+					</fieldset>
+					<fieldset class="form-group">
+						<button type="button" data-bind="event: {click: showMoreDetails}, text: detailButtonText, attr: {class: detailButtonClass}" id="optionalProfile" value=""></button>
+					</fieldset>
+					<div class="" data-bind="visible: moreDetails">
+					<fieldset class="form-group">
+						<label for="coordinatorWorkPlace" class="sr-only optionalForm"> Who is your employer</label>
+							<input type="text" id="coordinatorWorkPlace" class="form-control optionalForm" placeholder="Place of Work: Jane Doe Inc.">
+					</fieldset>
+					<fieldset class="form-group">	
+						<label for="coordinatorTitle" class="sr-only"> Enter your Job Title </label>
+							<input type="text" id="coordinatorTitle" class="form-control optionalForm" placeholder="Job Title: Senior Vice President (VP)">
+					</fieldset>
+					<fieldset class="form-group">	
+						<label for="coordinatorJobBDay" class="sr-only"> Enter job start date </label>
+							<input type="date" id="coordinatorJobBDay" class="form-control optionalForm" placeholder="01/05/2005">
+					</fieldset>
+					<fieldset class="form-group">
+						<label for="coordinatorBDay" class="sr-only"> Enter your Birthday </label>
+							<input type="date" id="coordinatorBDay" class="form-control optionalForm" placeholder="01/05/2000">
+					</fieldset>
+					</div>
+				</form>
+			</div>
+		</div><!--End of profile form-->
+		
 	</div><!--End of main container-->
 
 	<!--modal-->
 
-					<label for="coordinatorWorkPlace" class="sr-only optionalForm"> Who is your employer</label>
-						<input type="text" id="coordinatorWorkPlace" class="form-control optionalForm" placeholder="Place of Work: Jane Doe Inc.">
 					
-					<label for="coordinatorTitle" class="sr-only"> Enter your Job Title </label>
-						<input type="text" id="coordinatorTitle" class="form-control optionalForm" placeholder="Job Title: Senior Vice President (VP)">
-					
-					<label for="coordinatorJobBDay" class="sr-only"> Enter job start date </label>
-						<input type="date" id="coordinatorJobBDay" class="form-control optionalForm" placeholder="01/05/2005">
 
-					<label for="coordinatorBDay" class="sr-only"> Enter your Birthday </label>
-						<input type="date" id="coordinatorBDay" class="form-control optionalForm" placeholder="01/05/2000">
+	<!--Guest list -->
+
+					
 
 
 
@@ -157,9 +231,12 @@
       <!-- Latest compiled and minified Bootstrap JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBzAxzONXwF4Xsndod-hxOKv9utTfHSZk&signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>
       
       <script type="text/javascript" src="https://www.google.com/jsapi"></script>
       <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
       
       <script src="js/all.min.js"></script>
       
