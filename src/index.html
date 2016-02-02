@@ -59,7 +59,7 @@
 		
 		<div class="row">
 			<div class="container-fluid">
-				<form class="" data-bind="visible: eventForm">
+				<div class="" data-bind="visible: eventForm">
 					<fieldset class="form-group form-inline">
 					<legend>Create your Event</legend>
 						<div class="col-md-6">
@@ -88,7 +88,7 @@
 							<input type="text" id="eventLocation" class="form-control" autocomplete="on" placeholder="Loctaion Name: Golf-n-Stuff" data-bind="textInput: eventLocationName">
 							
 							<label for="eventLocationAddress" class="sr-only"> Enter Location Address</label>
-							<input type="text" id="eventLocationAddress" class="form-control" placeholder="123 E Awesome St., Tucson, Arizona" onfocus="geolocate()" autocomplete="on" data-bind="textInput: eventLocationAddress">
+							<input type="text" id="eventLocationAddress" class="form-control" placeholder="123 E Awesome St., Tucson, Arizona" onfocus="geolocate()" autocomplete="on" data-bind="value: eventLocationAddress, valueUpdate: 'autocomplete'">
 						</div>
 					</fieldset>
 					<fieldset class="form-group">
@@ -129,41 +129,46 @@
 					 	</div>
 					</fieldset>
 					<div class="" data-bind="visible: guestList">
-					<fieldset class="form-group form-inline">
-						<div class="col-md-6">
+					<div class="form-group form-inline">
+						<div class="col-md-6" data-bind="enterkey: addGuest">
 						<fieldset class="form-group">
-						<label for="guestName" class=" guestListForm"> Guest Name</label>
-						<input type="text" id="guestName" class="form-control guestListForm" autocomplete="on" placeholder="John Doe" data-bind="textInput: guestName">
+						<label for="guestName" class=" guestListForm"> Guest Name and Email</label>
+						<input type="text" id="guestName" class="form-control guestListForm" placeholder="John Doe" data-bind="textInput: guestNameToAdd">
 					
 						<label for="guestEmail" class="sr-only guestListForm"> Guest Email</label>
-						<input type="text" id="guestEmail" class="form-control guestListForm" autocomplete="on" placeholder="Email: John.doe@Doe.com" data-bind="textInput: guestEmail">
+						<input type="text" id="guestEmail" class="form-control guestListForm"  placeholder="Email: John.doe@Doe.com" data-bind="textInput: guestEmailToAdd">
 						</fieldset>
 						<fieldset class="form-group">
-						<button type="button" class="btn btn-default" id="addGuest" data-bind="event: {click: addGuest}">Add Guest</button>
+						<button type="button" class="btn btn-default" id="addGuest" data-bind="event: {click: addGuest}, enable: guestNameToAdd().length > 0">Add Guest</button>
 						</fieldset>
 						<table class="table table-striped table-responsive">
-							<tr>
+							<thead>
 								<th>Guest Name</th>
 								<th>Guest Email</th>
-							</tr>
-							<tr data-bind="foreach: guestListArray">
-								<td data-bind="text: guestName"></td>
-								<td data-bind="text: guestEmail"></td>
-							</tr>
+								<th>Remove Guest</th>
+							</thead>
+							<tbody data-bind="foreach: guestListArray">
+								<tr>
+									<td data-bind="text: guestName"></td>
+									<td data-bind="text: guestEmail"></td>
+									<td class="fa fa-trash-o center" data-bind="click: $root.removeGuest"></td>
+								</tr>
+							</tbody>
 						</table>
 						</div>
-					</fieldset>
+					</div>
 					</div>
 					<div class="col-xs-6 col-md-8 form-group">
 							<button type="button" class="btn btn-default" data-bind="event: {click: showPersonal}">save form</button>
 						</div>
 
-				</form>
+				</div>
 			</div>	
 		</div><!--End of Event details form-->
 <!-- 		Print Event Data to Screen #################################################### -->		
 		<div class="container-fluid" id="canvas">
-			<h2 data-bind="text: printEventName"></h2>
+			<h2> Event Preview ** does not contain address</h2>
+			<h3 data-bind="text: printEventName"></h3>
 			<p data-bind="text: printEventType"></p>
 			<p data-bind="text: printName"></p>
 			<p data-bind="text: printHostPTN"></p>
@@ -174,7 +179,7 @@
 		</div>
 		<div class="row">
 			<div class="container-fluid">
-				<form class="" data-bind="visible: personalForm">
+				<div class="" data-bind="visible: personalForm">
 					<fieldset class="form-group form-inline">
 					<legend>Personal Information</legend>
 						<label for="coordinatorName" class="sr-only"> Enter your Full Name </label>
@@ -208,7 +213,7 @@
 							<input type="date" id="coordinatorBDay" class="form-control optionalForm" placeholder="01/05/2000">
 					</fieldset>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div><!--End of profile form-->
 		
@@ -239,6 +244,7 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
       
       <script src="js/all.min.js"></script>
+      <script src="js/autofill-event.js"></script>
       
   </body>
 </html>

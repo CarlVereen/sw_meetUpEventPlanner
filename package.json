@@ -35,6 +35,7 @@
     "imagemin-pngquant": "^4.2.0"
   },
   "dependencies": {
+    "autofill-event": "0.0.1",
     "konva": "^0.11.1"
   }
 }
